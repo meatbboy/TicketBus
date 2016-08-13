@@ -1,23 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Web;
 
 namespace TicketBus.Models
 {
-    public class BusStops
+    public class Orders
     {
         [Required]
         public int Id { get; set; }
 
         [Required]
-        public string Name { get; set; }
-
-        public string Description { get; set; }
+        public int VoyageId { get; set; }
 
         [Required]
-        public string Status { get; set; }
+        public EnumStatus Status { get; set; }
+    }
+
+    public enum EnumStatus
+    {
+        Reserved = 1,
+        BoughtOut
     }
 }
