@@ -15,8 +15,12 @@ namespace TicketBus.Models
         [Required]
         public int DepartureBusStopId { get; set; }
 
+        public virtual BusStop DepartureBusStop { get; set; }
+
         [Required]
         public int ArrivalBusStopId { get; set; }
+
+        public virtual BusStop ArrivalBusStop { get; set; }
 
         [Required]
         public DateTime DepartureDateTime { get; set; }
@@ -39,5 +43,7 @@ namespace TicketBus.Models
 
         [Required]
         public int OneTicketCost { get; set; }
+
+        public virtual ICollection<Order> Orders { get; set; } 
     }
 }

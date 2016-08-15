@@ -10,7 +10,6 @@ namespace TicketBus.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "TicketBus.Models.ApplicationDbContext";
         }
 
         protected override void Seed(TicketBus.Models.ApplicationDbContext context)

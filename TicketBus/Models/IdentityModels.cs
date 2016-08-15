@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -11,6 +13,7 @@ namespace TicketBus.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public DateTime BirthDate { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -27,6 +30,30 @@ namespace TicketBus.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+
+        public DbSet<BusStop> BusStops { get; set; }
+        public DbSet<Voyage> Voyages { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<Ticket> Tickets { get; set; }
+
+        /*protected new void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+
+            modelBuilder.Entity<Voyage>()
+                .HasRequired(m => m.DepartureBusStop)
+                .WithMany(t => t.DepartureVoyages)
+                .HasForeignKey(m => m.DepartureBusStopId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Voyage>()
+                .HasRequired(m => m.ArrivalBusStop)
+                .WithMany(t => t.ArrivalVoyages)
+                .HasForeignKey(m => m.ArrivalBusStopId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+        }*/
 
         public static ApplicationDbContext Create()
         {
