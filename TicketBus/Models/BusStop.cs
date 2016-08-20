@@ -20,7 +20,6 @@ namespace TicketBus.Models
         [Required]
         public string Status { get; set; }
 
-        public virtual ICollection<Voyage> DepartureVoyages { get; set; } 
-        public virtual ICollection<Voyage> ArrivalVoyages { get; set; }
+        public virtual ICollection<Voyage> Voyages { get; set; } 
     }
 }

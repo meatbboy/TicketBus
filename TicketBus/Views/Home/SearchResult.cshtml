@@ -1,0 +1,49 @@
+﻿@model IEnumerable<TicketBus.Models.Voyage>
+
+
+@if (Model != null)
+{
+    <table>
+        <tr>
+            <td>
+                <p>Voyage name</p></td>
+            <td>
+                <p>Departure DateTime</p></td>
+            <td>
+                <p>Number of seats</p></td>
+            <td>
+                <p>Travel time</p></td>
+            <td>
+                <p>One ticket cost</p></td>
+            <td></td>
+        </tr>
+        @foreach (var v in Model)
+        {
+            <tr>
+                <td>
+                    <p>@v.VoyageName</p></td>
+                <td>
+                    <p>@v.DepartureDateTime</p></td>
+                <td>
+                    <p>@v.NumberOfSeats</p></td>
+                <td>
+                    <p>@v.TravelTime</p></td>
+                <td>
+                    <p>@v.OneTicketCost</p></td>
+                <td>
+                    <p><a href="/Home/Ticket/@v.Id">Buy ticket</a>
+                    </p></td>
+            </tr>
+        }
+    </table>
+
+}
+else
+{
+    <h4>Not found</h4>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

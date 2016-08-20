@@ -18,12 +18,15 @@ namespace TicketBus.Models
         public virtual Order Order { get; set; }
 
         [Required]
+        [Display(Name = "Passenger's full name")]
         public string PassengersFullName { get; set; }
 
         [Required]
+        [Display(Name = "Passenger's document number")]
         public string PassengersDocNumber { get; set; }
 
         [Required]
+        [Display(Name = "Passenger's seat number")]
         public int PassengerSeatNumber { get; set; }
 
         [Required]

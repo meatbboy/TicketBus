@@ -36,25 +36,6 @@ namespace TicketBus.Models
         public DbSet<Order> Orders { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
 
-        /*protected new void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-
-            modelBuilder.Entity<Voyage>()
-                .HasRequired(m => m.DepartureBusStop)
-                .WithMany(t => t.DepartureVoyages)
-                .HasForeignKey(m => m.DepartureBusStopId)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Voyage>()
-                .HasRequired(m => m.ArrivalBusStop)
-                .WithMany(t => t.ArrivalVoyages)
-                .HasForeignKey(m => m.ArrivalBusStopId)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-        }*/
-
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

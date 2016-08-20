@@ -212,13 +212,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201608151210590_Initial.cs" />
-    <Compile Include="Migrations\201608151210590_Initial.Designer.cs">
-      <DependentUpon>201608151210590_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201608151212437_Models.cs" />
-    <Compile Include="Migrations\201608151212437_Models.Designer.cs">
-      <DependentUpon>201608151212437_Models.cs</DependentUpon>
+    <Compile Include="Migrations\201608182033445_Initial.cs" />
+    <Compile Include="Migrations\201608182033445_Initial.Designer.cs">
+      <DependentUpon>201608182033445_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -304,6 +300,8 @@
     <Content Include="Scripts\jquery-ui-1.12.0.js" />
     <Content Include="Scripts\jquery-ui-1.12.0.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -348,6 +346,9 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Voyage\SelectVoyage.cshtml" />
+    <Content Include="Views\Home\SearchResult.cshtml" />
+    <Content Include="Views\Home\Ticket.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -359,11 +360,8 @@
     <Content Include="Scripts\jquery-3.1.0.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201608151210590_Initial.resx">
-      <DependentUpon>201608151210590_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201608151212437_Models.resx">
-      <DependentUpon>201608151212437_Models.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201608182033445_Initial.resx">
+      <DependentUpon>201608182033445_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -3,7 +3,7 @@ namespace TicketBus.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Models : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -23,8 +23,6 @@ namespace TicketBus.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        DepartureBusStopId = c.Int(nullable: false),
-                        ArrivalBusStopId = c.Int(nullable: false),
                         DepartureDateTime = c.DateTime(nullable: false),
                         ArrivalDateTime = c.DateTime(nullable: false),
                         TravelTime = c.Time(nullable: false, precision: 7),
@@ -32,18 +30,8 @@ namespace TicketBus.Migrations
                         VoyageName = c.String(nullable: false),
                         NumberOfSeats = c.Int(nullable: false),
                         OneTicketCost = c.Int(nullable: false),
-                        BusStop_Id = c.Int(),
-                        BusStop_Id1 = c.Int(),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.BusStops", t => t.ArrivalBusStopId, cascadeDelete: false)
-                .ForeignKey("dbo.BusStops", t => t.DepartureBusStopId, cascadeDelete: false)
-                .ForeignKey("dbo.BusStops", t => t.BusStop_Id)
-                .ForeignKey("dbo.BusStops", t => t.BusStop_Id1)
-                .Index(t => t.DepartureBusStopId)
-                .Index(t => t.ArrivalBusStopId)
-                .Index(t => t.BusStop_Id)
-                .Index(t => t.BusStop_Id1);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Orders",
@@ -71,23 +59,37 @@ namespace TicketBus.Migrations
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Orders", t => t.OrderId, cascadeDelete: true)
                 .Index(t => t.OrderId);
+           
+            
+            CreateTable(
+                "dbo.VoyageBusStops",
+                c => new
+                    {
+                        Voyage_Id = c.Int(nullable: false),
+                        BusStop_Id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.Voyage_Id, t.BusStop_Id })
+                .ForeignKey("dbo.Voyages", t => t.Voyage_Id, cascadeDelete: true)
+                .ForeignKey("dbo.BusStops", t => t.BusStop_Id, cascadeDelete: true)
+                .Index(t => t.Voyage_Id)
+                .Index(t => t.BusStop_Id);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Voyages", "BusStop_Id1", "dbo.BusStops");
-            DropForeignKey("dbo.Voyages", "BusStop_Id", "dbo.BusStops");
+
             DropForeignKey("dbo.Orders", "VoyageId", "dbo.Voyages");
             DropForeignKey("dbo.Tickets", "OrderId", "dbo.Orders");
-            DropForeignKey("dbo.Voyages", "DepartureBusStopId", "dbo.BusStops");
-            DropForeignKey("dbo.Voyages", "ArrivalBusStopId", "dbo.BusStops");
+            DropForeignKey("dbo.VoyageBusStops", "BusStop_Id", "dbo.BusStops");
+            DropForeignKey("dbo.VoyageBusStops", "Voyage_Id", "dbo.Voyages");
+            DropIndex("dbo.VoyageBusStops", new[] { "BusStop_Id" });
+            DropIndex("dbo.VoyageBusStops", new[] { "Voyage_Id" });
+
             DropIndex("dbo.Tickets", new[] { "OrderId" });
             DropIndex("dbo.Orders", new[] { "VoyageId" });
-            DropIndex("dbo.Voyages", new[] { "BusStop_Id1" });
-            DropIndex("dbo.Voyages", new[] { "BusStop_Id" });
-            DropIndex("dbo.Voyages", new[] { "ArrivalBusStopId" });
-            DropIndex("dbo.Voyages", new[] { "DepartureBusStopId" });
+            DropTable("dbo.VoyageBusStops");
+
             DropTable("dbo.Tickets");
             DropTable("dbo.Orders");
             DropTable("dbo.Voyages");

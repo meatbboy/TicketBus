@@ -13,16 +13,6 @@ namespace TicketBus.Models
         public int Id { get; set; }
 
         [Required]
-        public int DepartureBusStopId { get; set; }
-
-        public virtual BusStop DepartureBusStop { get; set; }
-
-        [Required]
-        public int ArrivalBusStopId { get; set; }
-
-        public virtual BusStop ArrivalBusStop { get; set; }
-
-        [Required]
         public DateTime DepartureDateTime { get; set; }
 
         [Required]
@@ -45,5 +35,11 @@ namespace TicketBus.Models
         public int OneTicketCost { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; } 
+        public virtual ICollection<BusStop> BusStops { get; set; }
+
+        public Voyage()
+        {
+            this.BusStops = new HashSet<BusStop>();
+        }
     }
 }

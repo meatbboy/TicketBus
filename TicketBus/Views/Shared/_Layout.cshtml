@@ -40,16 +40,37 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")
 <script>
     $(function() {
         $(".date-picker").datepicker({
-                dateFormat: "dd-mm-yy",
+                dateFormat: "dd:mm:yy",
                 changeYear: true,
                 showOn: "button"
-            }).css("display", "inline-block")
+            }).css("display", "block")
             .next("button").button({
                 icons: { primary: "ui-icon-calendar" }
             });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#autoComplete').autocomplete({
+            source: '@Url.Action("AutoComplete", "Home")'
+        });
+    });
+</script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#autoComplete').autocomplete({
+            source: '@Url.Action("AutoComplete", "Home")'
+        });
+    });
+    </script><script type="text/javascript">
+    $(document).ready(function() {
+        $('#autoComplete1').autocomplete({
+            source: '@Url.Action("AutoComplete", "Home")'
+        });
     });
 </script>
     @RenderSection("scripts", required: false)
