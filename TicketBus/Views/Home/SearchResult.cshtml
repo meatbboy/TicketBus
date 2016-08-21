@@ -3,36 +3,57 @@
 
 @if (Model != null)
 {
-    <table class="table table-bordered">
+    <table class="table table-condensed">
         <tr>
             <td>
-                <p>Voyage name</p></td>
+                <p><b>Voyage number</b></p>
+            </td>
             <td>
-                <p>Departure DateTime</p></td>
+                <p><b>Voyage name</b>
+                </p></td>
             <td>
-                <p>Number of seats</p></td>
+                <p><b>Departure DateTime</b>
+                </p></td>
             <td>
-                <p>Travel time</p></td>
+                <p><b>Arrival DateTime</b>
+                </p></td>
             <td>
-                <p>One ticket cost</p></td>
-            <td></td>
+                <p><b>Travel time</b>
+                </p></td>
+            <td>
+                <p><b>Number of seats</b></p>
+            </td>
+            <td>
+                <p><b>One ticket cost</b>
+                </p></td>
+            <td>
+                <p><b>Buying a ticket</b>
+                </p></td>
         </tr>
         @foreach (var v in Model)
         {
             <tr>
                 <td>
-                    <p>@v.VoyageName</p></td>
+                    @v.VoyageNumber
+                </td>
                 <td>
-                    <p>@v.DepartureDateTime</p></td>
+                    @v.VoyageName</td>
                 <td>
-                    <p>@v.NumberOfSeats</p></td>
+                    @v.DepartureDateTime</td>
                 <td>
-                    <p>@v.TravelTime</p></td>
+                    @v.ArrivalDateTime
+                </td>
                 <td>
-                    <p>@v.OneTicketCost</p></td>
+                    @v.TravelTime
+                </td>
                 <td>
-                    <p><a href="/Home/Ticket/@v.Id">Buy ticket</a>
-                    </p></td>
+                    @v.NumberOfSeats</td>
+
+                <td>
+                    @v.OneTicketCost</td>
+                <td>
+                    <a href="/Home/Ticket/@v.Id">Buy ticket</a>
+                </td>
             </tr>
         }
     </table>

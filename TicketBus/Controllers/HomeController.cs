@@ -60,7 +60,6 @@ namespace TicketBus.Controllers
                         && (y.DepartureDateTime.Year == dateTime.Year
                         && y.DepartureDateTime.Month == dateTime.Month
                         && y.DepartureDateTime.Day == dateTime.Day)).ToListAsync();
-                string i = first;
                 if (res == null)
                     return HttpNotFound();
                 else { return PartialView("SearchResult", res); }             
