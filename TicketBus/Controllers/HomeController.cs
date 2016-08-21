@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -47,15 +48,19 @@ namespace TicketBus.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> SearchResult(string first, string second/*, string date*/)
+        public async Task<ActionResult> SearchResult(string first, string second, string date)
         {
+            DateTime dateTime = Convert.ToDateTime(date);
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 IEnumerable<Voyage> res =
-                    await
+                    await 
                         db.Voyages.Include(x => x.BusStops).Where(y => (y.BusStops.Select(z => z.Name).Contains(first) 
-                        && y.BusStops.Select(z => z.Name).Contains(second) 
-                        /*&& y.DepartureDateTime.Date == Convert.ToDateTime(date).Date*/)).ToListAsync();
+                        && y.BusStops.Select(z => z.Name).Contains(second)) 
+                        && (y.DepartureDateTime.Year == dateTime.Year
+                        && y.DepartureDateTime.Month == dateTime.Month
+                        && y.DepartureDateTime.Day == dateTime.Day)).ToListAsync();
+                string i = first;
                 if (res == null)
                     return HttpNotFound();
                 else { return PartialView("SearchResult", res); }             
@@ -77,6 +82,16 @@ namespace TicketBus.Controllers
                 db.Tickets.Add(ticket);
             }
             return "Thanks, " + ticket.PassengersFullName + ", for buying.";
+        }
+
+        public ActionResult Register()
+        {
+            return RedirectToAction("Register", "Account");
+        }
+
+        public ActionResult LogIn()
+        {
+            return RedirectToAction("LogIn", "Account");
         }
     }
 }

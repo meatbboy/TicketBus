@@ -7,6 +7,10 @@
 <div class="jumbotron">
     <h1>Welcome to TicketBus!</h1>
     <p class="lead">TicketBus is dedicated to covering a piece of the bus tickets sales cycle.</p>
+    @if (!Request.IsAuthenticated)
+    {
+        <p class="lead">Please, @Html.ActionLink("Register", "Register") or @Html.ActionLink("Log in", "LogIn").</p>
+    }   
 </div>
 
 @if (Request.IsAuthenticated)
@@ -14,31 +18,33 @@
     using (Ajax.BeginForm("SearchResult", new AjaxOptions { UpdateTargetId = "results" }))
     {
         <div class="row">
-            <h2>Voyage selection</h2>
-                <div class="col-md-3">
-                    <p>Departure bus stop</p>
-                    <div class="">
-                        <input class="form-control" type="text" name="first" id="autoComplete" size="40">
-                    </div>
+            <div class="row">
+                <h2>Voyage selection</h2>
+            </div>
+            <div class="col-md-3">
+                <p>Departure bus stop</p>
+                <div class="row">
+                    <input class="form-control" type="text" name="first" id="autoComplete" size="40">
                 </div>
+            </div>
             <div class="col-md-3">
                 <p>Arrival bus stop</p>
-                <div class="">
+                <div class="row">
                     <input class="form-control" type="text" name="second" id="autoComplete1" size="40">
                 </div>
             </div>
-            @*<div class="col-md-3">
+            <div class="col-md-3">
                 <p>Departure date</p>
-                <div class="">
-                    <input class="form-control date-picker" type="text" name="date" size="40">
+                <div>
+                    <input class="form-control" type="text" name="date" id="date-picker" size="40">
                 </div>
-            </div>*@
+            </div>
         </div>
-        <div class="">
+        <div class="col-md-3">
             <input type="submit" class="btn btn-default" value="Submit" />
         </div>      
     }
-    <div id="results">     
+    <div class="row" id="results">     
     </div>
 
 }

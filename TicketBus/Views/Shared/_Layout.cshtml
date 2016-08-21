@@ -43,14 +43,10 @@
     @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")
 <script>
     $(function() {
-        $(".date-picker").datepicker({
-                dateFormat: "dd:mm:yy",
-                changeYear: true,
-                showOn: "button"
-            }).css("display", "block")
-            .next("button").button({
-                icons: { primary: "ui-icon-calendar" }
-            });
+        $("#date-picker").datepicker({
+            dateFormat: "dd.mm.yy",
+            changeYear: true
+        });
     });
 </script>
 <script type="text/javascript">
@@ -60,13 +56,7 @@
         });
     });
 </script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $('#autoComplete').autocomplete({
-            source: '@Url.Action("AutoComplete", "Home")'
-        });
-    });
-    </script><script type="text/javascript">
+<script type="text/javascript">
     $(document).ready(function() {
         $('#autoComplete1').autocomplete({
             source: '@Url.Action("AutoComplete", "Home")'
