@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TicketBus;
 using TicketBus.Controllers;
 
 namespace TicketBus.Tests.Controllers
@@ -12,14 +8,17 @@ namespace TicketBus.Tests.Controllers
     [TestClass]
     public class HomeControllerTest
     {
+        private HomeController controller;
+        private ViewResult result;
+
         [TestMethod]
         public void Index()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            controller = new HomeController();
 
             // Act
-            ViewResult result = controller.Index() as ViewResult;
+            result = controller.Index() as ViewResult;
 
             // Assert
             Assert.IsNotNull(result);
@@ -29,10 +28,10 @@ namespace TicketBus.Tests.Controllers
         public void About()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            controller = new HomeController();
 
             // Act
-            ViewResult result = controller.About() as ViewResult;
+            result = controller.About() as ViewResult;
 
             // Assert
             Assert.AreEqual("Your application description page.", result.ViewBag.Message);
@@ -42,10 +41,10 @@ namespace TicketBus.Tests.Controllers
         public void Contact()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            controller = new HomeController();
 
             // Act
-            ViewResult result = controller.Contact() as ViewResult;
+            result = controller.Contact() as ViewResult;
 
             // Assert
             Assert.IsNotNull(result);
