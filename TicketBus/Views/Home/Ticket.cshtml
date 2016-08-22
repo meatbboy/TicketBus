@@ -7,38 +7,10 @@
 
 <h2>@ViewBag.Title</h2>
 
-@*@using (Html.BeginForm("Ticket", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <input type="hidden" value="ViewBag.VoyageId" name="VoyageId"/>
-    <div class="form-group">
-        <h4 class="col-md-2 control-label">Passenger's Full Name</h4>
-        <div class="col-md-10">
-            <input type="text" name="PassengersFullName" class="form-control"/>
-        </div>
-    </div>
-    <div class="form-group">
-        <h4 class="col-md-2 control-label">Passenger's Document Number</h4>
-        <div class="col-md-10">
-            <input type="text" name="PassengersDocNumber" class="form-control"/>
-        </div>
-    </div>
-    <div class="form-group">
-        <h4 class="col-md-2 control-label">Passenger's Seat Number</h4>
-        <div class="col-md-10">
-            <input type="text" name="PassengersSeatNumber" class="form-control"/>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Submit" />
-        </div>
-    </div>
-}*@
-
 @using (Html.BeginForm("Ticket", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
+    <input type="hidden" value="@ViewBag.VoyageId" name="VoyageId" />
     <div class="form-group">
         @Html.LabelFor(m => m.PassengersFullName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
@@ -63,5 +35,8 @@
         </div>
     </div>
 }
+<div class="block-margin">
+    @ViewBag.Success
+</div>
 
 

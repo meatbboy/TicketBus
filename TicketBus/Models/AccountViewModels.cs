@@ -77,7 +77,7 @@ namespace TicketBus.Models
 
         [Required]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd'.'MM'.'yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Birth date")]
         public DateTime BirthDate { get; set; }
 

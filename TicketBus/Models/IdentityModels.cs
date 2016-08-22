@@ -33,7 +33,6 @@ namespace TicketBus.Models
 
         public DbSet<BusStop> BusStops { get; set; }
         public DbSet<Voyage> Voyages { get; set; }
-        public DbSet<Order> Orders { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
 
         public static ApplicationDbContext Create()

@@ -216,12 +216,15 @@
     <Compile Include="Migrations\201608182033445_Initial.Designer.cs">
       <DependentUpon>201608182033445_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608212119271_Models.cs" />
+    <Compile Include="Migrations\201608212119271_Models.Designer.cs">
+      <DependentUpon>201608212119271_Models.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\BusStop.cs" />
-    <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Ticket.cs" />
     <Compile Include="Models\Voyage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -361,6 +364,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201608182033445_Initial.resx">
       <DependentUpon>201608182033445_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608212119271_Models.resx">
+      <DependentUpon>201608212119271_Models.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

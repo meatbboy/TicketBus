@@ -13,9 +13,9 @@ namespace TicketBus.Models
         public int Id { get; set; }
 
         [Required]
-        public int OrderId { get; set; }
+        public int VoyageId { get; set; }
 
-        public virtual Order Order { get; set; }
+        public virtual Voyage Voyage { get; set; }
 
         [Required]
         [Display(Name = "Passenger's full name")]
@@ -28,8 +28,5 @@ namespace TicketBus.Models
         [Required]
         [Display(Name = "Passenger's seat number")]
         public int PassengerSeatNumber { get; set; }
-
-        [Required]
-        public EnumStatus Status { get; set; }
     }
 }

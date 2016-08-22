@@ -34,7 +34,7 @@ namespace TicketBus.Models
         [Required]
         public int OneTicketCost { get; set; }
 
-        public virtual ICollection<Order> Orders { get; set; } 
+        public virtual ICollection<Ticket> Tickets { get; set; } 
         public virtual ICollection<BusStop> BusStops { get; set; }
 
         public Voyage()

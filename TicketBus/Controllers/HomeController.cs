@@ -74,13 +74,44 @@ namespace TicketBus.Controllers
         }
 
         [HttpPost]
-        public string Ticket(Ticket ticket)
+        public ActionResult Ticket(Ticket ticket)
         {
-            using (ApplicationDbContext db = new ApplicationDbContext())
+            if (ModelState.IsValid)
             {
-                db.Tickets.Add(ticket);
+                bool flag = true;
+                string first = null, second = null;
+                ViewBag.Success = "Thanks, " + ticket.PassengersFullName + ", for buying!";
+                using (ApplicationDbContext db = new ApplicationDbContext())
+                {
+                    var res = db.Tickets.OrderBy(t => t.VoyageId).Select(t => new { first = t.VoyageId, second = t.PassengerSeatNumber });
+                    foreach (var re in res)
+                    {
+                        if (re.first == ticket.VoyageId && re.second == ticket.PassengerSeatNumber)
+                        {
+                            ViewBag.Success = "This seat is taken!";
+                            flag = false;
+                        }
+                    }
+                    var temp = db.Tickets.OrderBy(t => t.VoyageId).Select(t => new { first = t.VoyageId, second = t.PassengersDocNumber });
+                    foreach (var tem in temp)
+                    {
+                        if (tem.first == ticket.VoyageId && tem.second == ticket.PassengersDocNumber)
+                        {
+                            ViewBag.Success = "Passenger already registered!";
+                            flag = false;
+                        }   
+                    }
+                    if (flag)
+                    {
+                        db.Tickets.Add(ticket);
+                        db.SaveChanges();
+                    }
+                }
+                return View();
             }
-            return "Thanks, " + ticket.PassengersFullName + ", for buying.";
+            //var errors = ModelState.Values.SelectMany(v => v.Errors);
+            ViewBag.Success = "Fill data!";
+            return View();
         }
 
         public ActionResult Register()
